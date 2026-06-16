@@ -1,0 +1,65 @@
+\documentclass[a4paper]{article}
+
+% A4-Druckbogen mit 9 Trading Cards (3 x 3)
+% Kartenformat: 63,5 x 88,9 mm
+% Abstand zwischen den Karten: 3 mm
+% Seitenraender: 6,75 mm links/rechts und 12,15 mm oben/unten
+\usepackage[
+  a4paper,
+  left=6.75mm,
+  right=6.75mm,
+  top=12.15mm,
+  bottom=12.15mm
+]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{ragged2e}
+\usepackage{ifthen}
+\usepackage{adjustbox}
+\usetikzlibrary{calc}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\renewcommand{\familydefault}{\sfdefault}
+
+\input{kartenlayout.tex}
+
+% Das sichtbare Kartenformat ist 63,5 mm breit. Einige TikZ-Textknoten haben
+% intern eine groessere, aber unsichtbare Bounding Box. Die feste Box sorgt
+% dafuer, dass jede Karte im Druckraster trotzdem exakt 63,5 mm belegt.
+\newcommand{\CardSlot}[1]{%
+  \makebox[63.5mm][l]{%
+    \hspace*{-12.89mm}\input{#1}%
+  }%
+}
+
+\begin{document}
+\noindent\hbox to \textwidth{%
+  \vbox to \textheight{%
+    \hbox{%
+      \CardSlot{vorlage1.tex}\hskip3mm%
+      \CardSlot{vorlage2.tex}\hskip3mm%
+      \CardSlot{vorlage3.tex}%
+    }%
+    \vskip3mm%
+    \hbox{%
+      \CardSlot{vorlage4.tex}\hskip3mm%
+      \CardSlot{vorlage5.tex}\hskip3mm%
+      \CardSlot{vorlage6.tex}%
+    }%
+    \vskip3mm%
+    \hbox{%
+      \CardSlot{vorlage7.tex}\hskip3mm%
+      \CardSlot{vorlage8.tex}\hskip3mm%
+      \CardSlot{vorlage9.tex}%
+    }%
+    \vss%
+  }%
+  \hss%
+}
+\end{document}

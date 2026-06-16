@@ -1,0 +1,169 @@
+\documentclass{article}
+
+% Standard-Trading-Card: 63,5 x 88,9 mm
+\usepackage[
+  paperwidth=63.5mm,
+  paperheight=88.9mm,
+  margin=0mm
+]{geometry}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{ragged2e}
+\usepackage{ifthen}
+\usetikzlibrary{calc}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\renewcommand{\familydefault}{\sfdefault}
+
+% -----------------------------------------------------------------------------
+% DATEN DER KARTE
+% Nur diesen Bereich für einen anderen Piloten ändern.
+% -----------------------------------------------------------------------------
+\newcommand{\PilotName}{Plissken}
+\newcommand{\PilotStatus}{AKTIV}
+\newcommand{\PilotRole}{MECHWARRIOR}
+\newcommand{\PilotImage}{Bilder/plissken.png}
+
+\newcommand{\Gunnery}{3}
+\newcommand{\Piloting}{5}
+\newcommand{\SPASlots}{0 / 2}
+
+\newcommand{\AbilityOneName}{RANGE MASTER (LONG)}
+\newcommand{\AbilityOneText}{The gunner for this unit specializes in attacks at long range: apply a -1 Target Number modifier for attacks at long range, but a +2 modifier for any attack made in short range.}
+
+\newcommand{\AbilityTwoName}{SPEED DEMON}
+\newcommand{\AbilityTwoText}{A pilot with the Speed Demon SPA adds +2 inches to the unit's ground movement and +3 inches to the unit's sprint value, without increasing the TMM.}
+
+\newcommand{\AssignedUnit}{WARHAMMER}
+\newcommand{\AssignedVariant}{WHM-7M}
+% -----------------------------------------------------------------------------
+
+% Farben, angelehnt an die Override-Oberfläche
+\definecolor{CardBlack}{HTML}{0C0D0D}
+\definecolor{Panel}{HTML}{171919}
+\definecolor{PanelLight}{HTML}{202323}
+\definecolor{LineGray}{HTML}{343838}
+\definecolor{TextMain}{HTML}{F2F2F2}
+\definecolor{TextMuted}{HTML}{A7AAAA}
+\definecolor{OverrideGreen}{HTML}{6DDF73}
+\definecolor{OverrideDarkGreen}{HTML}{183D20}
+
+\newcommand{\SmallCapsLabel}[1]{%
+  {\fontsize{4.7}{5.2}\selectfont\bfseries\color{TextMuted}\MakeUppercase{#1}}%
+}
+
+\newcommand{\StatBox}[4]{%
+  % #1 x links, #2 Breite, #3 Label, #4 Wert
+  \fill[Panel] (#1,56.2) rectangle ++(#2,11.4);
+  \fill[OverrideGreen] (#1,56.2) rectangle ++(0.55,11.4);
+  \node[anchor=north west, text=TextMuted, font=\fontsize{4.2}{4.8}\selectfont\bfseries]
+    at ($(#1,67.6)+(1.7,-1.8)$) {\MakeUppercase{#3}};
+  \node[anchor=west, text=TextMain, font=\fontsize{13}{13}\selectfont\bfseries]
+    at ($(#1,56.2)+(2.1,4.2)$) {#4};
+}
+
+\newcommand{\AbilityBox}[5]{%
+  % #1 unteres y, #2 oberes y, #3 Nummer, #4 Name, #5 Text
+  \fill[Panel] (3,#1) rectangle (60.5,#2);
+  \draw[LineGray, line width=0.25mm] (3,#1) rectangle (60.5,#2);
+  \fill[OverrideGreen] (3,#1) rectangle (3.65,#2);
+  \fill[OverrideDarkGreen] (5.1,{#2-4.7}) rectangle (9.4,{#2-1.0});
+  \node[text=OverrideGreen, font=\fontsize{5.5}{6}\selectfont\bfseries]
+    at (7.25,{#2-2.85}) {#3};
+  \node[anchor=north west, text=TextMain,
+        font=\fontsize{5.3}{5.8}\selectfont\bfseries]
+    at (10.6,{#2-1.0}) {#4};
+  \node[anchor=north west, text width=47.7mm, align=left,
+        text=TextMuted, font=\fontsize{4.35}{5.05}\selectfont]
+    at (10.6,{#2-4.8}) {#5};
+}
+
+\begin{document}
+\begin{tikzpicture}[x=1mm,y=1mm]
+  % Kartenhintergrund und Außenrand
+  \clip[rounded corners=2.4mm] (0.4,0.4) rectangle (63.1,88.5);
+  \fill[CardBlack] (0,0) rectangle (63.5,88.9);
+  \draw[OverrideGreen, line width=0.55mm, rounded corners=2.2mm]
+    (1.0,1.0) rectangle (62.5,87.9);
+
+  % Kopfbereich
+  \fill[Panel] (2.4,69.6) rectangle (61.1,86.8);
+  \fill[OverrideGreen] (2.4,69.6) rectangle (3.1,86.8);
+
+  % Profilbild mit Platzhalter, wenn die Datei noch fehlt
+  \fill[CardBlack] (5.0,72.0) rectangle (19.4,84.9);
+  \begin{scope}
+    \clip[rounded corners=0.7mm] (5.0,72.0) rectangle (19.4,84.9);
+    \IfFileExists{\PilotImage}{%
+      \node[inner sep=0pt] at (12.2,78.45)
+        {\includegraphics[width=14.4mm,height=12.9mm]{\PilotImage}};
+    }{%
+      \fill[PanelLight] (5.0,72.0) rectangle (19.4,84.9);
+      \node[text=TextMuted, align=center,
+            font=\fontsize{4.2}{4.8}\selectfont\bfseries]
+        at (12.2,78.45) {PROFILBILD\\EINFÜGEN};
+    }
+  \end{scope}
+  \draw[OverrideGreen, line width=0.35mm, rounded corners=0.7mm]
+    (5.0,72.0) rectangle (19.4,84.9);
+
+  % Status und Name
+  \fill[OverrideDarkGreen] (22.1,82.0) rectangle (31.0,84.3);
+  \node[text=OverrideGreen, font=\fontsize{4.2}{4.5}\selectfont\bfseries]
+    at (26.55,83.15) {\PilotStatus};
+
+  \fill[PanelLight] (31.8,82.0) rectangle (43.2,84.3);
+  \node[text=TextMuted, font=\fontsize{4.0}{4.4}\selectfont\bfseries]
+    at (37.5,83.15) {\PilotRole};
+
+  \node[anchor=west, text=TextMain,
+        font=\fontsize{12.5}{13}\selectfont\bfseries]
+    at (22.0,77.4) {``\PilotName''};
+
+  \node[anchor=west, text=TextMuted,
+        font=\fontsize{4.6}{5}\selectfont\bfseries]
+    at (22.1,73.4) {BATTLETECH OVERRIDE};
+
+  % Kampfwerte
+  \node[anchor=west] at (3.0,68.6) {\SmallCapsLabel{Kampfwerte}};
+  \draw[LineGray, line width=0.25mm] (3.0,68.0) -- (60.5,68.0);
+
+  \StatBox{3.0}{18.3}{Gunnery}{\Gunnery}
+  \StatBox{22.6}{18.3}{Piloting}{\Piloting}
+  \StatBox{42.2}{18.3}{SPA-Slots}{\SPASlots}
+
+  % Spezialfähigkeiten
+  \node[anchor=west] at (3.0,54.8) {\SmallCapsLabel{Special Pilot Abilities}};
+  \draw[LineGray, line width=0.25mm] (3.0,54.2) -- (60.5,54.2);
+
+  \AbilityBox{39.5}{52.8}{1}{\AbilityOneName}{\AbilityOneText}
+  \AbilityBox{24.4}{37.7}{2}{\AbilityTwoName}{\AbilityTwoText}
+
+  % Einheitenzuweisung
+  \node[anchor=west] at (3.0,22.7) {\SmallCapsLabel{Einheitenzuweisung}};
+  \draw[LineGray, line width=0.25mm] (3.0,22.1) -- (60.5,22.1);
+
+  \fill[Panel] (3.0,7.4) rectangle (60.5,20.7);
+  \draw[LineGray, line width=0.25mm] (3.0,7.4) rectangle (60.5,20.7);
+  \fill[OverrideDarkGreen] (5.2,12.2) rectangle (10.4,17.4);
+  \node[text=OverrideGreen, font=\fontsize{5.5}{6}\selectfont\bfseries]
+    at (7.8,14.8) {BM};
+  \node[anchor=west, text=TextMain,
+        font=\fontsize{7.2}{7.8}\selectfont\bfseries]
+    at (12.2,16.1) {\AssignedUnit};
+  \node[anchor=west, text=TextMuted,
+        font=\fontsize{5.0}{5.5}\selectfont]
+    at (12.2,12.4) {\AssignedVariant};
+
+  % Fußzeile
+  \node[anchor=south east, text=TextMuted,
+        font=\fontsize{3.8}{4.2}\selectfont\bfseries]
+    at (60.5,3.0) {MECH PILOT CARD};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,155 @@
+% =============================================================================
+% BATTLETECH OVERRIDE - KATALOG DER SPECIAL PILOT ABILITIES
+% =============================================================================
+% Verwendung in mechpilot_card.tex:
+%
+%   \newcommand{\AbilityOne}{\RangeMasterLong}
+%   \newcommand{\AbilityTwo}{\SpeedDemon}
+%
+% Der Kurzname steht jeweils im ersten Argument von \DeclareSPA und wird
+% automatisch als LaTeX-Befehl angelegt. Leerzeichen und Sonderzeichen werden
+% im Kurznamen weggelassen, zum Beispiel:
+%
+%   Range Master (Long) -> \RangeMasterLong
+%   Eagle's Eyes        -> \EaglesEyes
+%   Multi-Tasker        -> \MultiTasker
+%
+% Eine neue Fertigkeit wird nach diesem Muster ergänzt:
+%
+%   \DeclareSPA{Kurzname}{Slot}{Anzeigename}{Beschreibung}
+% =============================================================================
+
+\newcommand{\DeclareSPA}[4]{%
+  \expandafter\def\csname #1\endcsname{#1}%
+  \expandafter\def\csname SPAName#1\endcsname{#3}%
+  \expandafter\def\csname SPAText#1\endcsname{#4}%
+  \expandafter\def\csname SPASlot#1\endcsname{#2}%
+}
+
+\newcommand{\SPAName}[1]{%
+  \ifcsname SPAName#1\endcsname
+    \csname SPAName#1\endcsname
+  \else
+    Unbekannte SPA: #1%
+  \fi
+}
+
+\newcommand{\SPAText}[1]{%
+  \ifcsname SPAText#1\endcsname
+    \csname SPAText#1\endcsname
+  \else
+    Für diese SPA wurde noch keine Beschreibung hinterlegt.%
+  \fi
+}
+
+\newcommand{\SPASlot}[1]{%
+  \ifcsname SPASlot#1\endcsname
+    \csname SPASlot#1\endcsname
+  \else
+    ?%
+  \fi
+}
+
+% ----------------------------------------------------------------------------
+% AB SLOT 1
+% ----------------------------------------------------------------------------
+
+\DeclareSPA{BloodStalker}{1}{Blood Stalker}{%
+A pilot with this SPA could be said to have a one-tracked mind, and focuses all of their energies on the destruction of only one enemy at a time. The Blood Stalker unit must designate a chosen enemy at the start of each game. All attacks against the chosen enemy receive a -1 Target Number modifier, but all attacks made against any other enemies suffer a +2 Target Number modifier until the chosen enemy is destroyed. If the Blood Stalker starts its Movement with its chosen enemy out of line of sight or destroyed, the Blood Stalker may choose a new enemy to stalk.%
+}
+
+\DeclareSPA{ClusterHitter}{1}{Cluster Hitter}{%
+As long as the unit with this SPA does not move during its Movement Phase, it can turn one M die to a 1 or one C die to a 3 for each TIC with M or C dice.%
+}
+
+\DeclareSPA{Dodge}{1}{Dodge}{%
+Any opposing unit that attempts to deliver a physical attack against a unit with this SPA will suffer a +2 Target Number modifier.%
+}
+
+\DeclareSPA{EaglesEyes}{1}{Eagle's Eyes}{%
+This unit adds 6 inches to all of its available sensor ranges.%
+}
+
+\DeclareSPA{EnvironmentalSpecialist}{1}{Environmental Specialist}{%
+This unit reduces the mission's movement impairment by one level: Heavy$\rightarrow$Moderate, Moderate$\rightarrow$Light, Light$\rightarrow$None.%
+}
+
+\DeclareSPA{ForwardObserver}{1}{Forward Observer}{%
+If the Forward Observer makes its own attack, any indirect attacks it spots for (IF or indirect Artillery) do not take the Target Number modifier for the spotter attacking.%
+}
+
+\DeclareSPA{ManeuveringAce}{1}{Maneuvering Ace}{%
+This unit reduces the cost for moving through all woods and jungle terrain types by 1 inch per inch of movement.%
+}
+
+\DeclareSPA{MeleeMaster}{1}{Melee Master}{%
+A pilot with this SPA adds additional damage equal to half their unit's Size value (rounded up), upon delivering a successful physical attack of any kind, including punch, kick, melee, charging, and Death from Above attacks.%
+}
+
+\DeclareSPA{MeleeSpecialist}{1}{Melee Specialist}{%
+A pilot with this ability applies an additional -1 Target Number modifier when making any physical attacks.%
+}
+
+\DeclareSPA{MultiTasker}{1}{Multi-Tasker}{%
+This unit can ignore the target modifier for the first secondary target.%
+}
+
+\DeclareSPA{RangeMasterExtreme}{1}{Range Master (Extreme)}{%
+The gunner for this unit specializes in attacks in extreme range: apply a -1 Target Number modifier for attacks at extreme range, but a +2 modifier for any attack made in short range.%
+}
+
+\DeclareSPA{RangeMasterLong}{1}{Range Master (Long)}{%
+The gunner for this unit specializes in attacks in long range: apply a -1 Target Number modifier for attacks at long range, but a +2 modifier for any attack made in short range.%
+}
+
+\DeclareSPA{RangeMasterMedium}{1}{Range Master (Medium)}{%
+The gunner for this unit specializes in attacks in medium range: apply a -1 Target Number modifier for attacks at medium range, but a +2 modifier for any attack made in short range.%
+}
+
+\DeclareSPA{StandAside}{1}{Stand-Aside}{%
+This unit can move through hostile units during its Movement Phase, at an additional cost of 1 inch of Move. This action causes no damage to either unit.%
+}
+
+% ----------------------------------------------------------------------------
+% AB SLOT 2
+% ----------------------------------------------------------------------------
+
+\DeclareSPA{Hopper}{2}{Hopper}{%
+A unit controlled by a pilot with this SPA can ignore the effects of the first MP Hit it receives.%
+}
+
+\DeclareSPA{JumpingJack}{2}{Jumping Jack}{%
+A pilot with the Jumping Jack SPA is so comfortable with the use of jumping movement that their unit uses a +1 attacker movement modifier for jumping instead of +2.%
+}
+
+\DeclareSPA{Marksman}{2}{Marksman}{%
+As long as this unit stands still in the Movement Phase, it can choose the following for its first successful weapon hit: reduce the damage of the weapon by half (rounded down, to a minimum of 1). If it does, it performs an additional critical hit check, even if the location is still armored.%
+}
+
+\DeclareSPA{SpeedDemon}{2}{Speed Demon}{%
+A pilot with the Speed Demon SPA adds +2 inches to the unit's ground movement and +3 inches to the unit's sprint value, without increasing the TMM.%
+}
+
+\DeclareSPA{Swordsman}{2}{Swordsman}{%
+On a successful physical attack made while using the unit's melee weapon (axe, sword etc.), this pilot may choose one of two options: deliver 2 extra points of damage to the opponent, or roll one additional Critical Hit against the target, even if it still has armor remaining. Note that if the unit lacks a melee weapon, the Swordsman SPA will have no effect.%
+}
+
+% ----------------------------------------------------------------------------
+% AB SLOT 3
+% ----------------------------------------------------------------------------
+
+\DeclareSPA{HotDog}{3}{Hot Dog}{%
+This unit acts as if it was one level lower on the heat scale than it actually is, except when hitting automatic shutdown.%
+}
+
+\DeclareSPA{NaturalGrace}{3}{Natural Grace}{%
+This unit may make attacks as if it has a 360-degree firing arc, but is still hit on the rear location table if an attack originates from the rear arc.%
+}
+
+\DeclareSPA{ObliqueAttacker}{3}{Oblique Attacker}{%
+This unit receives a -1 Target Number modifier for indirect attacks and may even make indirect fire attacks without a friendly spotter. If attempting to use indirect fire without a friendly spotter, however, the unit trades its -1 Target Number modifier for a +2 modifier, which replaces any and all spotter-related modifiers.%
+}
+
+\DeclareSPA{Sniper}{3}{Sniper}{%
+This gunner's SPA reduces their Range Modifiers at medium, long and extreme range by -1.%
+}
