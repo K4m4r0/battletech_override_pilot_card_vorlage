@@ -2,32 +2,11 @@
 
 ![Muster einer fertigen Mech-Pilot-Karte](Bilder/Muster.jpg)
 
-Mit dieser LaTeX-Vorlage können Mech-Pilot-Karten für **BattleTech Override** erstellt und gemeinsam auf einer A4-Seite gedruckt werden.
+Mit dieser LaTeX-Vorlage können Mech-Pilot-Karten für **BattleTech Override** erstellt werden.
 
 Eine Karte besitzt das Standard-Trading-Card-Format von **63,5 × 88,9 mm**. Auf eine A4-Seite passen maximal **neun Karten** in einem Raster aus drei Spalten und drei Reihen.
 
-## Projektstruktur
 
-```text
-.
-├── Bilder/
-│   ├── Muster.jpg
-│   └── plissken.png
-├── main.tex
-├── mechpilot_card.tex
-├── kartenlayout.tex
-├── spa_fertigkeiten.tex
-├── vorlage1.tex
-├── vorlage2.tex
-├── vorlage3.tex
-├── vorlage4.tex
-├── vorlage5.tex
-├── vorlage6.tex
-├── vorlage7.tex
-├── vorlage8.tex
-├── vorlage9.tex
-└── README.md
-```
 
 ## Dateien
 
@@ -130,7 +109,7 @@ Jede Karte besitzt drei sichtbare Fertigkeitsslots:
 \def\AbilityThree{}
 ```
 
-Wird keine Fertigkeit ausgewählt, bleibt das jeweilige Feld leer. Der Rahmen und die Slotnummer bleiben trotzdem sichtbar.
+Wird keine Fertigkeit ausgewählt, bleibt das jeweilige Feld leer.
 
 ### Drei belegte Slots
 
@@ -285,21 +264,6 @@ Beim Drucken müssen folgende Einstellungen verwendet werden:
 
 Optionen wie „An Seite anpassen“, „Verkleinern“ oder „Übergroße Seiten anpassen“ dürfen nicht aktiviert sein. Andernfalls stimmt das Kartenformat von 63,5 × 88,9 mm nicht mehr.
 
-## Musterbild ändern
-
-Das Bild unter der Überschrift dieser README liegt unter:
-
-```text
-Bilder/Muster.jpg
-```
-
-Es kann durch ein anderes Bild ersetzt werden, solange Dateiname und Pfad gleich bleiben.
-
-Alternativ kann der Pfad am Anfang dieser README geändert werden:
-
-```markdown
-![Muster einer fertigen Mech-Pilot-Karte](Bilder/Muster.jpg)
-```
 
 ## Credits
 - Dizzy: BT Verwaltungs App und Hinterlands Override App
