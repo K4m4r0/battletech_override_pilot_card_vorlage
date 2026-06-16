@@ -302,5 +302,5 @@ Alternativ kann der Pfad am Anfang dieser README geändert werden:
 ```
 
 ## Credits
-Dizzy: BT Verwaltungs App und Hinterlands Override App
-Bilder: Unbekannt
+- Dizzy: BT Verwaltungs App und Hinterlands Override App
+- Bilder: Unbekannt
