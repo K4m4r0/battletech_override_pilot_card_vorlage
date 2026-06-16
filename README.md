@@ -300,3 +300,7 @@ Alternativ kann der Pfad am Anfang dieser README geändert werden:
 ```markdown
 ![Muster einer fertigen Mech-Pilot-Karte](Bilder/Muster.jpg)
 ```
+
+## Credits
+Dizzy: BT Verwaltungs App und Hinterlands Override App
+Bilder: Unbekannt
